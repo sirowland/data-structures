@@ -4,12 +4,43 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
+    
+    var newNode = new Node(value);
+    //base case: head and tail need to be assigned
+    if(list.head === null){
+        list.head = newNode;
+        list.tail = newNode;
+    } else {
+      var currentNode = list.tail;
+      currentNode.next = newNode;
+      list.tail = newNode;
+    }
   };
 
   list.removeHead = function() {
+    var toDelete = list.head;
+    list.head = list.head.next;
+    delete list[toDelete];
+    return toDelete.value;
+    
   };
 
   list.contains = function(target) {
+    var isFound = false;
+    var currentNode = list.head;
+    
+    while(isFound === false){
+      if(currentNode === null) {
+        return isFound;
+      } else if (currentNode.value === target){
+        isFound = true;
+      } else {
+        currentNode = currentNode.next;
+      }
+    }
+  
+  return isFound;
+
   };
 
   return list;
