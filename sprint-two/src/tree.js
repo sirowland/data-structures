@@ -23,29 +23,18 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  var bool = false;
 
-  function search(nodeList) {
-    for (var i = 0; i < nodeList.length; i++) {
-      if (nodeList[i].value === target) {
-        bool = true;
-        break;
-      } else if (nodeList[i].value !== target && nodeList[i].children.length > 0) {
-        search(nodeList[i].children);
-      }
-    }
-    return bool;
-  }
-  
   if (this.value === target) {
-    bool = true; 
-  } else {
-    if (this.children.length > 0) {
-      return search(this.children);
+    return true;
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    if (this.children[i].contains(target)) {
+      return true;
     }
   }
 
- return bool;
+  return false;
 };
 
 
