@@ -29,6 +29,7 @@ treeMethods.contains = function(target) {
     for (var i = 0; i < nodeList.length; i++) {
       if (nodeList[i].value === target) {
         bool = true;
+        break;
       } else if (nodeList[i].value !== target && nodeList[i].children.length > 0) {
         search(nodeList[i].children);
       }
