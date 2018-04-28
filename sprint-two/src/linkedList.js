@@ -11,16 +11,20 @@ var LinkedList = function() {
         list.head = newNode;
         list.tail = newNode;
     } else {
-      var currentNode = list.tail;
-      currentNode.next = newNode;
-      list.tail = newNode;
+        list.tail.next = newNode;
+        list.tail = newNode;
+      // var currentNode = list.tail;
+      // currentNode.next = newNode;
+      // list.tail = newNode;
     }
   };
 
   list.removeHead = function() {
     var toDelete = list.head;
     list.head = list.head.next;
-    delete list[toDelete];
+    
+    // delete list[toDelete];
+    delete toDelete;
     return toDelete.value;
     
   };

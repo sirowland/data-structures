@@ -2,6 +2,8 @@ var BinarySearchTree = function(value) {
   this.value = value;
   this.left = null;
   this.right = null;
+  // this.count = 0;
+  // this.values = [];
 };
 
 BinarySearchTree.prototype.insert = function(value) {
@@ -12,13 +14,37 @@ BinarySearchTree.prototype.insert = function(value) {
   } else if (value > this.value && this.right === null) {
     this.right = newTree;
   } else if (value < this.value) {
-    var searchTree = this.left;
-    searchTree.insert(value);
+    this.left.insert(value);
   } else {
-    var searchTree = this.right;
-    searchTree.insert(value);
+    this.right.insert(value);
   }
+
+  // this.values.push(value);
+  // this.count++;
+  // checkIfNeedtoRebalance();
 }
+
+// BinarySearchTree.prototype.checkIfNeedtoRebalance = function() {
+
+//   if (this.count > thatFormula) {
+//     //run all those steps to rebalance
+//   }
+  
+  
+// }
+
+// BinarySearchTree.prototype.rebalance  = function() {
+//   var values = this.values  
+//   // sort values
+//   // pick a middle point
+//   // get an array of left over values
+//   // initialize new tree (middlePoint)
+//   // run a bunch of inserts
+
+//   return function () {
+
+//   }
+// }
 
 BinarySearchTree.prototype.contains = function(value) {
   if (this.value === value) {
@@ -28,11 +54,9 @@ BinarySearchTree.prototype.contains = function(value) {
   } else if (value > this.value && this.right === null) {
     return false;
   } else if (value < this.value) {
-    var searchTree = this.left
-    return searchTree.contains(value);
+    return this.left.contains(value);
   } else {
-    var searchTree = this.right
-    return searchTree.contains(value);
+    return this.right.contains(value);
   }
 }
 
@@ -40,13 +64,11 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
   cb(this.value);
     
   if (this.left !== null) {
-    var searchTree = this.left;
-    searchTree.depthFirstLog(cb);
+    this.left.depthFirstLog(cb);
   }
 
   if (this.right !== null) {
-    var searchTree = this.right;
-    searchTree.depthFirstLog(cb);
+    this.right.depthFirstLog(cb);
   }
 }
 
